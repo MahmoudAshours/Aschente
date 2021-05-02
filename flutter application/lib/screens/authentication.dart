@@ -6,7 +6,7 @@ class AuthenticateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: null,
+      child: Text('Authentication'),
     );
   }
 }
