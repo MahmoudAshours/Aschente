@@ -7,7 +7,7 @@ enum Auth {
   SignUp,
 }
 
-class ProviderModel extends ChangeNotifier {
+class AuthProvider extends ChangeNotifier {
   bool _isLoading;
   FirebaseAuth firebaseAuth;
   //GoogleSignIn _googleSignIn;
@@ -21,7 +21,7 @@ class ProviderModel extends ChangeNotifier {
   // OR await (_googleSignIn.isSignedIn()
   Future<bool> isAuth() async => firebaseAuth.currentUser != null;
 
-  ProviderModel() {
+  AuthProvider() {
     // _googleSignIn = GoogleSignIn(
     //   scopes: <String>['email'],
     // );
