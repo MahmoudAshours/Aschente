@@ -1,4 +1,5 @@
 import 'package:aschente/helpers/auth_provider.dart';
+import 'package:aschente/screens/home.dart';
 import 'package:aschente/screens/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -29,14 +30,12 @@ class _MyAppState extends State<MyApp> {
     return ChangeNotifierProvider.value(
       value: provider,
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Aschente',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
         home: Scaffold(
-          body: Center(
-            child: SplashWidget(),
-          ),
+          body: Center(child: SplashWidget()),
         ),
       ),
     );

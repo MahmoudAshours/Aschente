@@ -19,12 +19,11 @@ class AuthProvider extends ChangeNotifier {
   }
 
   // OR await (_googleSignIn.isSignedIn()
-  Future<bool> isAuth() async => firebaseAuth.currentUser != null;
+  Future<bool> isAuth() async {
+    return firebaseAuth.currentUser != null;
+  }
 
   AuthProvider() {
-    // _googleSignIn = GoogleSignIn(
-    //   scopes: <String>['email'],
-    // );
     firebaseAuth = FirebaseAuth.instance;
     _isLoading = false;
   }

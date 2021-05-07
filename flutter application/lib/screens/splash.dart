@@ -16,6 +16,7 @@ class SplashWidget extends StatelessWidget {
         Duration(seconds: 2),
         () async {
           bool isAuth = await Utils.provider(context, listen: false).isAuth();
+          print(isAuth);
           return Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
                 builder: (context) =>
