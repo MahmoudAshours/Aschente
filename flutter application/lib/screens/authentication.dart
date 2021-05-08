@@ -2,9 +2,9 @@ import 'package:aschente/helpers/auth_provider.dart';
 import 'package:aschente/helpers/color_pallete.dart';
 import 'package:aschente/helpers/strings.dart';
 import 'package:aschente/helpers/utils.dart';
+import 'package:aschente/main.dart';
+import 'package:aschente/widgets/no_glow_behavior.dart';
 import 'package:flutter/material.dart';
-import '../main.dart';
-import '../widgets/no_glow_behavior.dart';
 
 class AuthenticationWidget extends StatefulWidget {
   final Auth initialAuth;
@@ -64,7 +64,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
-        // color: Colors.white,
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(35),
           topLeft: Radius.circular(35),

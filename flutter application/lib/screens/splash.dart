@@ -4,8 +4,7 @@ import 'package:aschente/helpers/strings.dart';
 import 'package:aschente/helpers/utils.dart';
 import 'package:aschente/screens/authentication.dart';
 import 'package:flutter/material.dart';
-
-import 'home.dart';
+import 'package:aschente/screens/home.dart';
 
 class SplashWidget extends StatelessWidget {
   @override

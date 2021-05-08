@@ -34,10 +34,10 @@ class _HomeWidgetState extends State<HomeWidget> {
               setState(() => _selectedIndex = i);
             },
             buttons: [
-              ButtonData(Text('da'), FaIcon(FontAwesomeIcons.question)),
-              ButtonData(Text('da'), FaIcon(FontAwesomeIcons.question)),
-              ButtonData(Text('da'), FaIcon(FontAwesomeIcons.question)),
-              ButtonData(Text('da'), FaIcon(FontAwesomeIcons.question))
+              ButtonData(Text('Contest'), FaIcon(FontAwesomeIcons.question)),
+              ButtonData(Text('Practice'), FaIcon(FontAwesomeIcons.question)),
+              ButtonData(Text('Share'), FaIcon(FontAwesomeIcons.question)),
+              ButtonData(Text('Help'), FaIcon(FontAwesomeIcons.question))
             ],
           ),
         ],
