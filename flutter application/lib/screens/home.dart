@@ -28,6 +28,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               ),
             ),
           ),
+        
           GradientArcLight(
             currentIndex: _selectedIndex,
             onItemPressed: (i) {
