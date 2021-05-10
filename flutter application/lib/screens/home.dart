@@ -34,10 +34,72 @@ class _HomeWidgetState extends State<HomeWidget> {
               setState(() => _selectedIndex = i);
             },
             buttons: [
-              ButtonData(Text('Contest'), FaIcon(FontAwesomeIcons.question)),
-              ButtonData(Text('Practice'), FaIcon(FontAwesomeIcons.question)),
-              ButtonData(Text('Share'), FaIcon(FontAwesomeIcons.question)),
-              ButtonData(Text('Help'), FaIcon(FontAwesomeIcons.question))
+              ButtonData(
+                FaIcon(
+                  FontAwesomeIcons.signal,
+                  color: _selectedIndex != 0 ? Color(0xff55516e) : Colors.black,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    'Contest',
+                    style: TextStyle(
+                      color: _selectedIndex != 0
+                          ? Color(0xff55516e)
+                          : Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+              ButtonData(
+                FaIcon(
+                  FontAwesomeIcons.book,
+                  color: _selectedIndex != 1 ? Color(0xff55516e) : Colors.black,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    'Practice',
+                    style: TextStyle(
+                      color: _selectedIndex != 1
+                          ? Color(0xff55516e)
+                          : Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+              ButtonData(
+                FaIcon(
+                  FontAwesomeIcons.share,
+                  color: _selectedIndex != 2 ? Color(0xff55516e) : Colors.black,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    'Share',
+                    style: TextStyle(
+                        color: _selectedIndex != 2
+                            ? Color(0xff55516e)
+                            : Colors.black),
+                  ),
+                ),
+              ),
+              ButtonData(
+                FaIcon(
+                  FontAwesomeIcons.question,
+                  color: _selectedIndex != 3 ? Color(0xff55516e) : Colors.black,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    'Help',
+                    style: TextStyle(
+                        color: _selectedIndex != 3
+                            ? Color(0xff55516e)
+                            : Colors.black),
+                  ),
+                ),
+              )
             ],
           ),
         ],

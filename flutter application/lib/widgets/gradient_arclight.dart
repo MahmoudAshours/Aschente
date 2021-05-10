@@ -79,7 +79,7 @@ class _ArclightButtonState extends State<ArclightButton> {
       clipper: TrapeziumClipper(),
       child: AnimatedContainer(
         width: 80,
-        height: 200,
+        height: MediaQuery.of(context).size.height / 4,
         duration: Duration(milliseconds: 250),
         child: TextButton(
           style: ButtonStyle(
