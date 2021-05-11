@@ -10,7 +10,7 @@ class SplashWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// [todo] Fetch data and load login or home screen.
-    WidgetsBinding.instance.addPostFrameCallback(
+    WidgetsBinding.instance!.addPostFrameCallback(
       (_) {
         Future.delayed(
           Duration(seconds: 2),

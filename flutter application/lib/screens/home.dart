@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:aschente/screens/contest.dart';
 import 'package:aschente/screens/help.dart';
 import 'package:aschente/screens/practice.dart';
@@ -7,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeWidget extends StatefulWidget {
-  const HomeWidget({Key key}) : super(key: key);
+  const HomeWidget({Key? key}) : super(key: key);
 
   @override
   _HomeWidgetState createState() => _HomeWidgetState();
@@ -22,17 +21,9 @@ class _HomeWidgetState extends State<HomeWidget> {
     ],
   );
   int _selectedIndex = 0;
-  bool s = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            s = false;
-          });
-        },
-      ),
       body: Stack(
         children: [
           Container(
@@ -48,9 +39,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             ),
           ),
           Center(child: _screens[_selectedIndex]),
-          s
-              ? ZoomOut(child: buildGradientArcLight())
-              : SizedBox(child: buildGradientArcLight())
+          buildGradientArcLight()
         ],
       ),
     );
@@ -59,9 +48,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   GradientArcLight buildGradientArcLight() {
     return GradientArcLight(
       currentIndex: _selectedIndex,
-      onItemPressed: (i) {
-        setState(() => _selectedIndex = i);
-      },
+      onItemPressed: (i) => setState(() => _selectedIndex = i),
       buttons: [
         ButtonData(
           FaIcon(

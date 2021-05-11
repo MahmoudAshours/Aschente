@@ -16,10 +16,10 @@ class AuthenticationWidget extends StatefulWidget {
 }
 
 class _AuthenticationWidgetState extends State<AuthenticationWidget> {
-  Auth state;
-  List<String> labels;
-  List<String> mapKeys;
-  Map<String, String> authData;
+  late Auth state;
+  late List<String> labels;
+  late List<String> mapKeys;
+  late Map<String, String> authData;
 
   @override
   void initState() {
@@ -120,13 +120,13 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
             if (snapshot.connectionState == ConnectionState.waiting ||
                 !snapshot.hasData) return Text('Please be patient');
             if (snapshot.data == 'success')
-              WidgetsBinding.instance.addPostFrameCallback(
+              WidgetsBinding.instance!.addPostFrameCallback(
                   (_) => Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
                         builder: (context) => MyApp(),
                       ),
                       (_) => false));
-            return Text(snapshot.data);
+            return Text('${snapshot.data}');
           },
         ),
       ),
@@ -154,9 +154,9 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
     );
   }
 
-  Widget _buildAuthButton({Function onTap, String text, Color fillColor}) {
+  Widget _buildAuthButton({Function? onTap, String? text, Color? fillColor}) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => onTap,
       child: Container(
         width: MediaQuery.of(context).size.width,
         alignment: Alignment.center,
@@ -173,7 +173,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
             ),
           ],
         ),
-        child: Text(text,
+        child: Text('$text',
             style: TextStyle(
               color: Pallete.primary,
               fontSize: 16,

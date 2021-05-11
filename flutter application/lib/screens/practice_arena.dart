@@ -52,9 +52,6 @@ class _PracticeArenaState extends State<PracticeArena> {
                   isReverseAnimation: true,
                   isTimerTextShown: true,
                   autoStart: true,
-                  onStart: () {
-                    print('Countdown Started');
-                  },
                   onComplete: () {
                     print('Countdown Ended');
                   },

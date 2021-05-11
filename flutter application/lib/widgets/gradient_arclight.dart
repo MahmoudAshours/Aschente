@@ -7,7 +7,10 @@ class GradientArcLight extends StatefulWidget {
   final ValueChanged<int> onItemPressed;
 
   const GradientArcLight(
-      {Key key, this.buttons, this.currentIndex, this.onItemPressed})
+      {Key? key,
+      required this.buttons,
+      required this.currentIndex,
+      required this.onItemPressed})
       : super(key: key);
   @override
   _GradientArcLightState createState() => _GradientArcLightState();
@@ -49,7 +52,10 @@ class ArclightButton extends StatefulWidget {
   final bool selected;
   final ValueChanged<int> onItemPressed;
   const ArclightButton(
-      {Key key, this.selected, this.onItemPressed, this.buttonData})
+      {Key? key,
+      required this.selected,
+      required this.onItemPressed,
+      required this.buttonData})
       : super(key: key);
   @override
   _ArclightButtonState createState() => _ArclightButtonState();

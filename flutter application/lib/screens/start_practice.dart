@@ -1,12 +1,11 @@
-import 'package:aschente/screens/practice_arena.dart';
+import 'package:aschente/helpers/strings.dart';
+import 'package:aschente/screens/questions_preparations.dart';
 import 'package:flutter/material.dart';
-
-import '../helpers/strings.dart';
 
 class StartPractice extends StatefulWidget {
   final subject;
 
-  const StartPractice({Key key, this.subject}) : super(key: key);
+  const StartPractice({Key? key, this.subject}) : super(key: key);
 
   @override
   _StartPracticeState createState() => _StartPracticeState();
@@ -95,7 +94,9 @@ class _StartPracticeState extends State<StartPractice> {
                       child: TextButton(
                         onPressed: () => Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (_) => PracticeArena()),
+                          MaterialPageRoute(
+                              builder: (_) => QuestionsPreparations(
+                                  subject: widget.subject)),
                         ),
                         child: Text(
                           'Start',

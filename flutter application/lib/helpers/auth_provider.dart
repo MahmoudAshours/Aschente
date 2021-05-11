@@ -8,11 +8,11 @@ enum Auth {
 }
 
 class AuthProvider extends ChangeNotifier {
-  bool _isLoading;
-  FirebaseAuth firebaseAuth;
+  late bool _isLoading;
+  late FirebaseAuth firebaseAuth;
   //GoogleSignIn _googleSignIn;
 
-  get isLoading => _isLoading;
+  bool get isLoading => _isLoading;
   set isLoading(bool value) {
     _isLoading = value;
     notifyListeners();
@@ -47,35 +47,34 @@ class AuthProvider extends ChangeNotifier {
         return 'Password doesn\'t match';
     }
 
-    if (!data.containsKey('email') || data['email'].isEmpty)
+    if (!data.containsKey('email') || data['email']!.isEmpty)
       return 'Please enter your email';
-    if (!data.containsKey('password') || data['password'].isEmpty)
+    if (!data.containsKey('password') || data['password']!.isEmpty)
       return 'Please enter your password';
     if (!RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(data['email'])) return 'Please enter a valid email address';
+        .hasMatch(data['email']!)) return 'Please enter a valid email address';
 
     UserCredential user;
     try {
       if (state == Auth.SignIn)
         user = await firebaseAuth.signInWithEmailAndPassword(
-            email: data['email'], password: data['password']);
+            email: data['email']!, password: data['password']!);
       else {
         user = await firebaseAuth.createUserWithEmailAndPassword(
-            email: data['email'], password: data['password']);
-        user.user.updateProfile(displayName: data['username']);
+            email: data['email']!, password: data['password']!);
+        user.user!.updateProfile(displayName: data['username']);
 
         await FirebaseFirestore.instance
             .collection("users")
-            .doc(user.user.uid)
+            .doc(user.user!.uid)
             .set(
           {'email': data['email'], 'name': data['username']},
         );
       }
     } catch (e) {
       /// [todo] parse error message.
-      print(e.message);
-      return e.message;
+      return '$e';
     }
 
     /// [todo] save user credentials.
