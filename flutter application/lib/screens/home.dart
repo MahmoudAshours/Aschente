@@ -1,6 +1,6 @@
-import 'package:aschente/screens/contest.dart';
+import 'package:aschente/screens/Contest/contest.dart';
 import 'package:aschente/screens/help.dart';
-import 'package:aschente/screens/practice.dart';
+import 'package:aschente/screens/Practice/practice.dart';
 import 'package:aschente/widgets/gradient_arclight.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

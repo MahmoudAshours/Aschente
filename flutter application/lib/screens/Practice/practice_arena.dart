@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:aschente/helpers/utils.dart';
-import 'package:aschente/screens/practice_result.dart';
+import 'package:aschente/screens/Practice/practice_result.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 
