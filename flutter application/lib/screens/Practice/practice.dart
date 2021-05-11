@@ -1,5 +1,5 @@
 import 'package:aschente/helpers/strings.dart';
-import 'package:aschente/screens/start_practice.dart';
+import 'package:aschente/screens/Practice/start_practice.dart';
 import 'package:flutter/material.dart';
 import 'package:aschente/widgets/no_glow_behavior.dart';
 
