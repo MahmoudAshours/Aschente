@@ -1,5 +1,5 @@
 import 'package:aschente/helpers/strings.dart';
-import 'package:aschente/screens/questions_preparations.dart';
+import 'package:aschente/screens/Practice/questions_preparations.dart';
 import 'package:flutter/material.dart';
 
 class StartPractice extends StatefulWidget {
