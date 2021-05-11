@@ -1,3 +1,4 @@
+import 'package:aschente/screens/practice_arena.dart';
 import 'package:flutter/material.dart';
 
 import '../helpers/strings.dart';
@@ -16,9 +17,7 @@ class _StartPracticeState extends State<StartPractice> {
 
   @override
   void didChangeDependencies() {
-    setState(() {
-      _height = MediaQuery.of(context).size.height / 1.9;
-    });
+    setState(() => _height = MediaQuery.of(context).size.height / 1.9);
     super.didChangeDependencies();
   }
 
@@ -94,13 +93,17 @@ class _StartPracticeState extends State<StartPractice> {
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) => PracticeArena()),
+                        ),
                         child: Text(
                           'Start',
                           style: TextStyle(
-                              color: Color(0xffcfb34e),
-                              fontSize: 30,
-                              fontWeight: FontWeight.w800),
+                            color: Color(0xffcfb34e),
+                            fontSize: 30,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ),
                     )

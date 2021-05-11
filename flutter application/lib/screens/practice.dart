@@ -1,8 +1,7 @@
 import 'package:aschente/helpers/strings.dart';
 import 'package:aschente/screens/start_practice.dart';
 import 'package:flutter/material.dart';
-
-import '../widgets/no_glow_behavior.dart';
+import 'package:aschente/widgets/no_glow_behavior.dart';
 
 class Practice extends StatelessWidget {
   @override
