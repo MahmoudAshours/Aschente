@@ -1,120 +1,54 @@
+import 'package:aschente/helpers/strings.dart';
+import 'package:aschente/screens/Contest/start_contest.dart';
 import 'package:flutter/material.dart';
+import 'package:aschente/widgets/no_glow_behavior.dart';
 
 class Contest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: ListView(
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                color: Colors.red,
-                width: 100,
-                height: 100,
-              ),
-              Text('hello')
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                color: Colors.red,
-                width: 100,
-                height: 100,
-              ),
-              Text('hello')
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                color: Colors.red,
-                width: 100,
-                height: 100,
-              ),
-              Text('hello')
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                color: Colors.red,
-                width: 100,
-                height: 100,
-              ),
-              Text('hello')
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                color: Colors.red,
-                width: 100,
-                height: 100,
-              ),
-              Text('hello')
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                color: Colors.red,
-                width: 100,
-                height: 100,
-              ),
-              Text('hello')
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                color: Colors.red,
-                width: 100,
-                height: 100,
-              ),
-              Text('hello')
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                color: Colors.red,
-                width: 100,
-                height: 100,
-              ),
-              Text('hello')
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                color: Colors.red,
-                width: 100,
-                height: 100,
-              ),
-              Text('hello')
-            ],
-          ),
-        ],
+      child: ScrollConfiguration(
+        behavior: NoGlowBehaviour(),
+        child: ListView(
+          children: Strings.subjects
+              .map(
+                (subject) => GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => StartContest(subject: subject),
+                      ),
+                    );
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Hero(
+                        tag: '$subject',
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 2,
+                          height: MediaQuery.of(context).size.height / 4,
+                          child: Image.asset(
+                            'assets/$subject.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '$subject',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ),
+                      Divider()
+                    ],
+                  ),
+                ),
+              )
+              .toList(),
+        ),
       ),
     );
   }
