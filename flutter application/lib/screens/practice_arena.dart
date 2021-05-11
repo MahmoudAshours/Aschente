@@ -129,8 +129,8 @@ class _PracticeArenaState extends State<PracticeArena> {
       if (widget.questions[_questionNumber]['correct_answer'] ==
           Utils.alphaNumeric(answerIndex + 1)) {
         _score++;
-        _userAnswers.add(answer);
       }
+      _userAnswers.add(answer);
       if (_questionNumber != 9) {
         _getNextQuestion();
       } else {
