@@ -14,4 +14,9 @@ class Strings {
   static final String name = 'Your name';
   static final String switchToSignUp = 'Don\'t have an account?';
   static final String switchtoSignIn = 'Already have an account?';
+  static final List<String> subjects = ["Operating Systems"];
+  static final Map<String, String> subjectsDesc = {
+    "Operating Systems":
+        "An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for computer programs."
+  };
 }

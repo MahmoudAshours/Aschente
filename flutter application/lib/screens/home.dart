@@ -1,3 +1,7 @@
+import 'package:animate_do/animate_do.dart';
+import 'package:aschente/screens/contest.dart';
+import 'package:aschente/screens/help.dart';
+import 'package:aschente/screens/practice.dart';
 import 'package:aschente/widgets/gradient_arclight.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,10 +14,25 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
+  final List _screens = List.unmodifiable(
+    [
+      Contest(),
+      Practice(),
+      Help(),
+    ],
+  );
   int _selectedIndex = 0;
+  bool s = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            s = false;
+          });
+        },
+      ),
       body: Stack(
         children: [
           Container(
@@ -28,83 +47,68 @@ class _HomeWidgetState extends State<HomeWidget> {
               ),
             ),
           ),
-        
-          GradientArcLight(
-            currentIndex: _selectedIndex,
-            onItemPressed: (i) {
-              setState(() => _selectedIndex = i);
-            },
-            buttons: [
-              ButtonData(
-                FaIcon(
-                  FontAwesomeIcons.signal,
-                  color: _selectedIndex != 0 ? Color(0xff55516e) : Colors.black,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    'Contest',
-                    style: TextStyle(
-                      color: _selectedIndex != 0
-                          ? Color(0xff55516e)
-                          : Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-              ButtonData(
-                FaIcon(
-                  FontAwesomeIcons.book,
-                  color: _selectedIndex != 1 ? Color(0xff55516e) : Colors.black,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    'Practice',
-                    style: TextStyle(
-                      color: _selectedIndex != 1
-                          ? Color(0xff55516e)
-                          : Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-              ButtonData(
-                FaIcon(
-                  FontAwesomeIcons.share,
-                  color: _selectedIndex != 2 ? Color(0xff55516e) : Colors.black,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    'Share',
-                    style: TextStyle(
-                        color: _selectedIndex != 2
-                            ? Color(0xff55516e)
-                            : Colors.black),
-                  ),
-                ),
-              ),
-              ButtonData(
-                FaIcon(
-                  FontAwesomeIcons.question,
-                  color: _selectedIndex != 3 ? Color(0xff55516e) : Colors.black,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    'Help',
-                    style: TextStyle(
-                        color: _selectedIndex != 3
-                            ? Color(0xff55516e)
-                            : Colors.black),
-                  ),
-                ),
-              )
-            ],
-          ),
+          Center(child: _screens[_selectedIndex]),
+          s
+              ? ZoomOut(child: buildGradientArcLight())
+              : SizedBox(child: buildGradientArcLight())
         ],
       ),
+    );
+  }
+
+  GradientArcLight buildGradientArcLight() {
+    return GradientArcLight(
+      currentIndex: _selectedIndex,
+      onItemPressed: (i) {
+        setState(() => _selectedIndex = i);
+      },
+      buttons: [
+        ButtonData(
+          FaIcon(
+            FontAwesomeIcons.signal,
+            color: _selectedIndex != 0 ? Color(0xff55516e) : Colors.black,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              'Contest',
+              style: TextStyle(
+                color: _selectedIndex != 0 ? Color(0xff55516e) : Colors.black,
+              ),
+            ),
+          ),
+        ),
+        ButtonData(
+          FaIcon(
+            FontAwesomeIcons.book,
+            color: _selectedIndex != 1 ? Color(0xff55516e) : Colors.black,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              'Practice',
+              style: TextStyle(
+                color: _selectedIndex != 1 ? Color(0xff55516e) : Colors.black,
+              ),
+            ),
+          ),
+        ),
+        ButtonData(
+          FaIcon(
+            FontAwesomeIcons.question,
+            color: _selectedIndex != 2 ? Color(0xff55516e) : Colors.black,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              'Help',
+              style: TextStyle(
+                  color:
+                      _selectedIndex != 2 ? Color(0xff55516e) : Colors.black),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
