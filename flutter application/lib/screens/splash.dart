@@ -67,15 +67,6 @@ class SplashWidget extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 20.0),
                     ),
-                    Text(
-                      'Splash screen',
-                      softWrap: true,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15.0,
-                          color: Pallete.primary),
-                    )
                   ],
                 ),
               )

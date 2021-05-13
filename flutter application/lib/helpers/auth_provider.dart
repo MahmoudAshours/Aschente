@@ -10,6 +10,8 @@ enum Auth {
 class AuthProvider extends ChangeNotifier {
   late bool _isLoading;
   late FirebaseAuth firebaseAuth;
+
+  late UserCredential user;
   //GoogleSignIn _googleSignIn;
 
   bool get isLoading => _isLoading;
@@ -25,24 +27,15 @@ class AuthProvider extends ChangeNotifier {
 
   AuthProvider() {
     firebaseAuth = FirebaseAuth.instance;
+    print('HEY');
     _isLoading = false;
   }
-
-  // Future<String> googleSignIn() async {
-  //   try {
-  //     await _googleSignIn.signIn();
-  //   } catch (error) {
-  //     print(error);
-  //     return error.toString();
-  //   }
-
-  //   /// [todo] save user credentials.
-  //   return 'success';
-  // }
-
   Future<String> authenticate(Map<String, String> data,
       {Auth state = Auth.SignIn}) async {
+    print('HELLLLLOOOOOO');
     if (state == Auth.SignUp) {
+      print('HELLLLLOOOOOO');
+
       if (data['password'] != data['repassword'])
         return 'Password doesn\'t match';
     }
@@ -55,7 +48,6 @@ class AuthProvider extends ChangeNotifier {
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(data['email']!)) return 'Please enter a valid email address';
 
-    UserCredential user;
     try {
       if (state == Auth.SignIn)
         user = await firebaseAuth.signInWithEmailAndPassword(
@@ -73,11 +65,12 @@ class AuthProvider extends ChangeNotifier {
         );
       }
     } catch (e) {
-      /// [todo] parse error message.
+      print("$e sadasd");
       return '$e';
     }
 
     /// [todo] save user credentials.
+    print('object');
     return 'success';
   }
 }

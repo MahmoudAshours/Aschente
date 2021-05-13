@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ContestArena extends StatefulWidget {
-  final Future<DocumentSnapshot> contestId;
+  final DocumentSnapshot contestId;
 
   const ContestArena({Key? key, required this.contestId}) : super(key: key);
   @override
@@ -30,42 +30,27 @@ class _ContestArenaState extends State<ContestArena> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: widget.contestId,
-        builder: (c, AsyncSnapshot<DocumentSnapshot> snapshot) {
-          if (snapshot.connectionState != ConnectionState.done ||
-              !snapshot.hasData ||
-              snapshot.data == null) {
-            Stack(
-              children: [
-                buildBackground(),
-                Container(child: SpinKitCircle(color: Colors.pink)),
-              ],
-            );
-          }
-          return Stack(
-            children: [
-              buildBackground(),
-              buildCounter(),
-              buildQuestion(context, snapshot.data?.get('questions')),
-              ...buildAnswers(
-                  context,
-                  snapshot.data!.get('questions')[_questionNumber]['answers'],
-                  snapshot.data!.get('questions')[_questionNumber])
-            ],
-          );
-        },
-      ),
-    );
+        body: Stack(
+      children: [
+        buildBackground(),
+        buildCounter(),
+        buildQuestion(context, widget.contestId.get('questions')),
+        ...buildAnswers(
+            context,
+            widget.contestId.get('questions')[_questionNumber]['answers'],
+            widget.contestId.get('questions')[_questionNumber])
+      ],
+    ));
   }
 
-  List<Positioned> buildAnswers(BuildContext context, Map data, egaba) {
+  List<Positioned> buildAnswers(BuildContext context, List data, Map egaba) {
     return data
-        .map(
-          (i, snapshot) => MapEntry(
+        .asMap()
+        .map<int, Positioned>(
+          (i, snapshot) => MapEntry<int, Positioned>(
             i,
             Positioned(
-              top: MediaQuery.of(context).size.height / 2 + int.parse(i) * 50,
+              top: MediaQuery.of(context).size.height / 2 + i * 50,
               left: 0,
               child: Container(
                 child: Padding(
@@ -74,14 +59,12 @@ class _ContestArenaState extends State<ContestArena> {
                     delay: Duration(seconds: i + 1),
                     child: TextButton(
                       onPressed: () => _checkAnswer(
-                        snapshot['answers'][i],
+                        snapshot,
                         i,
                         egaba['correct_answer'],
                       ),
-                      child: Text(
-                        '${snapshot['answers'][i]}',
-                        style: TextStyle(fontSize: 28, color: Colors.white),
-                      ),
+                      child: Text('$snapshot',
+                          style: TextStyle(fontSize: 28, color: Colors.white)),
                     ),
                   ),
                 ),

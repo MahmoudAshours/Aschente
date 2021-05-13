@@ -14,9 +14,14 @@ class Strings {
   static final String name = 'Your name';
   static final String switchToSignUp = 'Don\'t have an account?';
   static final String switchtoSignIn = 'Already have an account?';
-  static final List<String> subjects = ["Operating Systems"];
+  static final List<String> subjects = [
+    "Operating Systems",
+    "Civil Engineering"
+  ];
   static final Map<String, String> subjectsDesc = {
     "Operating Systems":
-        "An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for computer programs."
+        "An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for computer programs.",
+    "Civil Engineering":
+        "Civil engineering is a professional engineering discipline that deals with the design, construction, and maintenance of the physical and naturally built environment, including public works such as roads, bridges, canals, dams, airports"
   };
 }

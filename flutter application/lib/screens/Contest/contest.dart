@@ -10,44 +10,62 @@ class Contest extends StatelessWidget {
       child: ScrollConfiguration(
         behavior: NoGlowBehaviour(),
         child: ListView(
-          children: Strings.subjects
-              .map(
-                (subject) => GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => StartContest(subject: subject),
+          children: [
+            SafeArea(
+              child: Column(
+                children: [
+                  Center(
+                    child: Container(
+                      width: 200,
+                      height: 100,
+                      child: Text(
+                        'This feature is not finished yet',
+                        style: TextStyle(color: Colors.white, fontSize: 29),
                       ),
-                    );
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Hero(
-                        tag: '$subject',
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 2,
-                          height: MediaQuery.of(context).size.height / 4,
-                          child: Image.asset(
-                            'assets/$subject.png',
-                            fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ...Strings.subjects
+                .map(
+                  (subject) => GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => StartContest(subject: subject),
+                        ),
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Hero(
+                          tag: '$subject',
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: MediaQuery.of(context).size.height / 4,
+                            child: Image.asset(
+                              'assets/$subject.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          '$subject',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            '$subject',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
                         ),
-                      ),
-                      Divider()
-                    ],
+                        Divider()
+                      ],
+                    ),
                   ),
-                ),
-              )
-              .toList(),
+                )
+                .toList(),
+          ],
         ),
       ),
     );

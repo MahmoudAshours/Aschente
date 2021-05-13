@@ -29,6 +29,7 @@ class _MyAppState extends State<MyApp> {
     return ChangeNotifierProvider.value(
       value: provider,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Aschente',
         theme: ThemeData(
           primarySwatch: Colors.blue,

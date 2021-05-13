@@ -1,22 +1,292 @@
 [
-  {
-    "id": 0,
-    "question": "What is operating system?",
-    "correct_answer": "B",
-    "answers": [
-      "I don't know",
-      "is an operating system",
-      "idc"
-    ]
-  },
-  {
-    "id": 1,
-    "question": "What is image processing?",
-    "correct_answer": "B",
-    "answers": [
-      "I don't know",
-      "is an operating system",
-      "is an image processing"
-    ]
-  }
+   {
+      "question": "What is an operating system?",
+      "correct_answer": "d",
+      "answers": [
+         "a) collection of programs that manages hardware resources",
+         "b) system service provider to the application programs",
+         "c) interface between the hardware and application programs",
+         "d) all of the mentioned"
+      ]
+   },
+   {
+      "question": "To access the services of operating system, the interface is provided by the ___________",
+      "correct_answer": "a",
+      "answers": [
+         "a) System calls",
+         "b) API",
+         "c) Library",
+         "d) Assembly instructions"
+      ]
+   },
+   {
+      "question": "Which one of the following is not true?",
+      "correct_answer": "c",
+      "answers": [
+         "a) kernel is the program that constitutes the central core of the operating system",
+         "b) kernel is the first part of operating system to load into memory during booting",
+         "c) kernel is made of various modules which can not be loaded in running operating system",
+         "d) kernel remains in the memory during the entire computer session"
+      ]
+   },
+   {
+      "question": "Which one of the following error will be handle by the operating system?",
+      "correct_answer": "d",
+      "answers": [
+         "a) power failure",
+         "b) lack of paper in printer",
+         "c) connection failure in the network",
+         "d) all of the mentioned"
+      ]
+   },
+   {
+      "question": "What is the main function of the command interpreter?",
+      "correct_answer": "a",
+      "answers": [
+         "a) to get and execute the next user-specified command",
+         "b) to provide the interface between the API and application program",
+         "c) to handle the files in operating system",
+         "d) none of the mentioned"
+      ]
+   },
+   {
+      "question": "In Operating Systems, which of the following is/are CPU scheduling algorithms?",
+      "correct_answer": "d",
+      "answers": [
+         "a) Round Robin",
+         "b) Shortest Job First",
+         "c) Priority",
+         "d) All of the mentioned"
+      ]
+   },
+   {
+      "question": "If a process fails, most operating system write the error information to a ______",
+      "correct_answer": "a",
+      "answers": [
+         "a) log file",
+         "b) another running process",
+         "c) new file",
+         "d) none of the mentioned"
+      ]
+   },
+   {
+      "question": "Which facility dynamically adds probes to a running system, both in user processes and in the kernel?",
+      "correct_answer": "a",
+      "answers": [
+         "a) DTrace",
+         "b) DLocate",
+         "c) DMap",
+         "d) DAdd"
+      ]
+   },
+   {
+      "question": "Which one of the following is not a real time operating system?",
+      "correct_answer": "d",
+      "answers": [
+         "a) VxWorks",
+         "b) QNX",
+         "c) RTLinux",
+         "d) Palm OS"
+      ]
+   },
+   {
+      "question": ". The OS X has ____________",
+      "correct_answer": "b",
+      "answers": [
+         "a) monolithic kernel",
+         "b) hybrid kernel",
+         "c) microkernel",
+         "d) monolithic kernel with modules"
+      ]
+   },
+   {
+      "question": "The systems which allow only one process execution at a time, are called __________",
+      "correct_answer": "b",
+      "answers": [
+         "a) uniprogramming systems",
+         "b) uniprocessing systems",
+         "c) unitasking systems",
+         "d) none of the mentioned"
+      ]
+   },
+   {
+      "question": "In operating system, each process has its own __________",
+      "correct_answer": "d",
+      "answers": [
+         "a) address space and global variables",
+         "b) open files",
+         "c) pending alarms, signals and signal handlers",
+         "d) all of the mentioned"
+      ]
+   },
+   {
+      "question": "In Unix, Which system call creates the new process?",
+      "correct_answer": "a",
+      "answers": [
+         "a) fork",
+         "b) create",
+         "c) new",
+         "d) none of the mentioned"
+      ]
+   },
+   {
+      "question": "A process can be terminated due to __________",
+      "correct_answer": "d",
+      "answers": [
+         "a) normal exit",
+         "b) fatal error",
+         "c) killed by another process",
+         "d) all of the mentioned"
+      ]
+   },
+   {
+      "question": "What is the ready state of a process?",
+      "correct_answer": "a",
+      "answers": [
+         "a) when process is scheduled to run after some execution",
+         "b) when process is unable to run until some task has been completed",
+         "c) when process is using the CPU",
+         "d) none of the mentioned"
+      ]
+   },
+   {
+      "question": "What is interprocess communication?",
+      "correct_answer": "b",
+      "answers": [
+         "a) communication within the process",
+         "b) communication between two process",
+         "c) communication between two threads of same process",
+         "d) none of the mentioned"
+      ]
+   },
+   {
+      "question": "A set of processes is deadlock if __________",
+      "correct_answer": "a",
+      "answers": [
+         "a) each process is blocked and will remain so forever",
+         "b) each process is terminated",
+         "c) all processes are trying to kill each other",
+         "d) none of the mentioned"
+      ]
+   },
+   {
+      "question": "A process stack does not contain __________",
+      "correct_answer": "d",
+      "answers": [
+         "a) Function parameters",
+         "b) Local variables",
+         "c) Return addresses",
+         "d) PID of child process"
+      ]
+   },
+   {
+      "question": "Which system call can be used by a parent process to determine the termination of child process?",
+      "correct_answer": "a",
+      "answers": [
+         "a) wait",
+         "b) exit",
+         "c) fork",
+         "d) get"
+      ]
+   },
+   {
+      "question": ". The address of the next instruction to be executed by the current process is provided by the __________",
+      "correct_answer": "b",
+      "answers": [
+         "a) CPU registers",
+         "b) Program counter",
+         "c) Process stack",
+         "d) Pipe"
+      ]
+   },
+   {
+      "question": "A Process Control Block(PCB) does not contain which of the following?",
+      "correct_answer": "c",
+      "answers": [
+         "a) Code",
+         "b) Stack",
+         "c) Bootstrap program",
+         "d) Data"
+      ]
+   },
+   {
+      "question": "The number of processes completed per unit time is known as __________",
+      "correct_answer": "b",
+      "answers": [
+         "a) Output",
+         "b) Throughput",
+         "c) Efficiency",
+         "d) Capacity"
+      ]
+   },
+   {
+      "question": "The state of a process is defined by __________",
+      "correct_answer": "d",
+      "answers": [
+         "a) the final activity of the process",
+         "b) the activity just executed by the process",
+         "c) the activity to next be executed by the process",
+         "d) the current activity of the process"
+      ]
+   },
+   {
+      "question": "Which of the following is not the state of a process?",
+      "correct_answer": "b",
+      "answers": [
+         "a) New",
+         "b) Old",
+         "c) Waiting",
+         "d) Running"
+      ]
+   },
+   {
+      "question": "What is a Process Control Block?",
+      "correct_answer": "b",
+      "answers": [
+         "a) Process type variable",
+         "b) Data Structure",
+         "c) A secondary storage section",
+         "d) A Block in memory"
+      ]
+   },
+   {
+      "question": "The entry of all the PCBs of the current processes is in __________",
+      "correct_answer": "c",
+      "answers": [
+         "a) Process Register",
+         "b) Program Counter",
+         "c) Process Table",
+         "d) Process Unit"
+      ]
+   },
+   {
+      "question": "What is the degree of multiprogramming?",
+      "correct_answer": "d",
+      "answers": [
+         "a) the number of processes executed per unit time",
+         "b) the number of processes in the ready queue",
+         "c) the number of processes in the I/O queue",
+         "d) the number of processes in memory"
+      ]
+   },
+   {
+      "question": "A single thread of control allows the process to perform __________",
+      "correct_answer": "a",
+      "answers": [
+         "a) only one task at a time",
+         "b) multiple tasks at a time",
+         "c) only two tasks at a time",
+         "d) all of the mentioned"
+      ]
+   },
+   {
+      "question": "What is the objective of multiprogramming?",
+      "correct_answer": "c",
+      "answers": [
+         "a) Have a process running at all time",
+         "b) Have multiple programs waiting in a queue ready to run",
+         "c) To increase CPU utilization",
+         "d) None of the mentioned"
+      ]
+   }
 ]

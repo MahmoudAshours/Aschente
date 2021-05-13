@@ -38,7 +38,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               ),
             ),
           ),
-          Center(child: _screens[_selectedIndex]),
+            _screens[_selectedIndex],
           buildGradientArcLight()
         ],
       ),

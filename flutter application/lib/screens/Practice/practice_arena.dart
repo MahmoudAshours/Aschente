@@ -25,6 +25,7 @@ class _PracticeArenaState extends State<PracticeArena> {
           buildBackground(),
           buildCounter(),
           buildQuestion(context),
+          Divider(),
           for (var i = 0;
               i < widget.questions[_questionNumber]['answers'].length;
               i++)
@@ -36,7 +37,7 @@ class _PracticeArenaState extends State<PracticeArena> {
 
   Positioned buildAnswers(BuildContext context, int i) {
     return Positioned(
-      top: MediaQuery.of(context).size.height / 2 + i * 50,
+      top: MediaQuery.of(context).size.height / 2 + i * 80,
       left: 0,
       child: Container(
         child: Padding(
@@ -46,9 +47,12 @@ class _PracticeArenaState extends State<PracticeArena> {
             child: TextButton(
               onPressed: () => _checkAnswer(
                   widget.questions[_questionNumber]['answers'][i], i),
-              child: Text(
-                '${widget.questions[_questionNumber]['answers'][i]}',
-                style: TextStyle(fontSize: 28, color: Colors.white),
+              child: Container(
+                width: 300,
+                child: Text(
+                  '${widget.questions[_questionNumber]['answers'][i]}',
+                  style: TextStyle(fontSize: 24, color: Colors.white),
+                ),
               ),
             ),
           ),
@@ -111,7 +115,7 @@ class _PracticeArenaState extends State<PracticeArena> {
 
   Positioned buildQuestion(BuildContext context) {
     return Positioned(
-      top: MediaQuery.of(context).size.height / 3,
+      top: MediaQuery.of(context).size.height / 4.6,
       left: MediaQuery.of(context).size.width / 6 - 24,
       width: MediaQuery.of(context).size.width / 2,
       child: FadeInUp(
@@ -126,7 +130,9 @@ class _PracticeArenaState extends State<PracticeArena> {
   _checkAnswer(String answer, int? answerIndex) {
     print(answerIndex);
     if (answerIndex != null) {
-      if (widget.questions[_questionNumber]['correct_answer'] ==
+      if (widget.questions[_questionNumber]['correct_answer']
+              .toString()
+              .toUpperCase() ==
           Utils.alphaNumeric(answerIndex + 1)) {
         _score++;
       }

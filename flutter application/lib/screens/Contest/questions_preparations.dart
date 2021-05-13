@@ -25,14 +25,12 @@ class _OnlineQuestionsPreparationsState
     extends State<OnlineQuestionsPreparations> {
   List _pickedQuestions = [];
   late Stream<QuerySnapshot> _readyStream;
+
   @override
-  void initState() {
-    _readyStream = FirebaseFirestore.instance
-        .collection('contest')
-        .where('topic_name', isEqualTo: widget.subject)
-        .where('firstplayer_name', isEqualTo: null)
-        .snapshots();
-    super.initState();
+  void didChangeDependencies() {
+    final _authProvider = Provider.of<AuthProvider>(context);
+
+    super.didChangeDependencies();
   }
 
   @override
@@ -43,20 +41,27 @@ class _OnlineQuestionsPreparationsState
         children: [
           buildBackground(),
           StreamBuilder<QuerySnapshot>(
-            stream: _readyStream,
+            stream: FirebaseFirestore.instance
+                .collection('contest')
+                .where('topic_name', isEqualTo: widget.subject)
+                .where('firstplayer_uid',
+                    isNotEqualTo:
+                        '${_authProvider.firebaseAuth.currentUser!.uid}')
+                .snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
-                  child: Container(child: SpinKitCircle(color: Colors.pink)),
-                );
+                    child: Container(child: SpinKitCircle(color: Colors.pink)));
               }
-              if (snapshot.data!.docs.length < 1 || !snapshot.hasData)
+              if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
+                print('${snapshot.data!.docs}');
                 return buildQuestions(context, _authProvider);
+              }
               Future.delayed(
                 Duration(seconds: 6),
                 () async {
-                  final _contestId = _joinAsSecondPlayer(_authProvider);
+                  final _contestId = await _joinAsSecondPlayer(_authProvider);
                   print(_contestId);
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
@@ -83,49 +88,77 @@ class _OnlineQuestionsPreparationsState
 
   FutureBuilder<String> buildQuestions(
       BuildContext context, AuthProvider provider) {
+    late List _questions;
     return FutureBuilder(
       future: DefaultAssetBundle.of(context)
           .loadString('assets/${widget.subject}.json'),
       builder: (BuildContext context, snapshot) {
         if (snapshot.data != null ||
             snapshot.connectionState == ConnectionState.done) {
-          List _questions = json.decode(snapshot.data.toString());
+          _questions = json.decode(snapshot.data.toString());
           for (var i = 0; i < 10; i++) {
             final random = Random().nextInt(_questions.length);
             _pickedQuestions.add(_questions[random]);
           }
-          _createContest(provider, _questions);
         }
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                child: SpinKitCircle(color: Colors.pink),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Container(
-                  child: Text(
-                    'Preparing your questions',
-                    style: TextStyle(color: Colors.white, fontSize: 25),
+        return FutureBuilder<DocumentSnapshot>(
+            future: _createContest(provider, _questions),
+            builder: (context, docSnapshot) {
+              if (docSnapshot.data == null ||
+                  docSnapshot.connectionState != ConnectionState.done) {
+                return Center(
+                  child: Container(
+                    child: SpinKitCircle(color: Colors.pink),
                   ),
+                );
+              }
+              if (docSnapshot.data!.get('secondplayer_uid') != null) {
+                Future.delayed(
+                  Duration(seconds: 6),
+                  () async {
+                    final _contestId = await _joinAsSecondPlayer(provider);
+                    print(_contestId);
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (_) => ContestArena(contestId: _contestId),
+                      ),
+                    );
+                  },
+                );
+              }
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: SpinKitCircle(color: Colors.pink),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Container(
+                        child: Text(
+                          'Preparing your questions',
+                          style: TextStyle(color: Colors.white, fontSize: 25),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-        );
+              );
+            });
       },
     );
   }
 
-  Future<DocumentReference> _createContest(
+  Future<DocumentSnapshot> _createContest(
       AuthProvider provider, List questions) async {
     final _username = await _getUsername(provider);
     Map<String, dynamic> _contestData = {
       "topic_name": "${widget.subject}",
       "firstplayer_name": "${_username.get('name')}",
+      "firstplayer_uid": "${provider.firebaseAuth.currentUser!.uid}",
+      "secondplayer_uid": null,
       "secondplayer_name": null,
       "questions": questions,
       "firstplayer_score": 0,
@@ -134,20 +167,22 @@ class _OnlineQuestionsPreparationsState
     final DocumentReference _createdContest =
         FirebaseFirestore.instance.collection('contest').doc();
     _createdContest.set(_contestData);
-    return _createdContest;
+    return _createdContest.get();
   }
 
   Future<DocumentSnapshot> _joinAsSecondPlayer(AuthProvider provider) async {
     QuerySnapshot _openGame = await FirebaseFirestore.instance
         .collection('contest')
         .where('topic_name', isEqualTo: widget.subject)
-        .where('firstplayer_name', isNotEqualTo: 'asd')
+        .where('firstplayer_uid',
+            isNotEqualTo: '${provider.firebaseAuth.currentUser!.uid}')
         .snapshots()
         .first;
 
     final _username = await _getUsername(provider);
     Map<String, dynamic> _contestData = {
       "secondplayer_name": "${_username.get('name')}",
+      "secondplayer_uid": "${provider.firebaseAuth.currentUser!.uid}",
     };
     final DocumentReference _joinedContest = FirebaseFirestore.instance
         .collection('contest')

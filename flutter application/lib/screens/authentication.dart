@@ -32,8 +32,9 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
 
   get isSignIn => state == Auth.SignIn;
 
-  void changeAuthState() =>
-      setState(() => state = (isSignIn ? Auth.SignUp : Auth.SignIn));
+  void changeAuthState() {
+    setState(() => state = (isSignIn ? Auth.SignUp : Auth.SignIn));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +56,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
         ),
       ),
     );
+  }
+
+  click() {
+    print('asdsdasect');
   }
 
   Widget _buildForm(context) {
@@ -112,11 +117,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
       builder: (context) => AlertDialog(
         title: Text('Signing you in'),
         content: FutureBuilder(
-          future: gmail
-              ? Utils.provider(context, listen: false).googleSignIn()
-              : Utils.provider(context, listen: false)
-                  .authenticate(authData, state: state),
+          future: Utils.provider(context, listen: false)
+              .authenticate(authData, state: state),
           builder: (context, snapshot) {
+            print('objasdasect');
             if (snapshot.connectionState == ConnectionState.waiting ||
                 !snapshot.hasData) return Text('Please be patient');
             if (snapshot.data == 'success')
@@ -154,9 +158,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
     );
   }
 
-  Widget _buildAuthButton({Function? onTap, String? text, Color? fillColor}) {
-    return GestureDetector(
-      onTap: () => onTap,
+  Widget _buildAuthButton(
+      {required Function onTap, String? text, Color? fillColor}) {
+    return TextButton(
+      onPressed: () => onTap(),
       child: Container(
         width: MediaQuery.of(context).size.width,
         alignment: Alignment.center,

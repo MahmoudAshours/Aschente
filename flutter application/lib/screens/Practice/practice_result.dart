@@ -63,7 +63,7 @@ class PracticeResult extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Center(
                               child: Text(
-                                'Correct answer is : ${questions[i]['answers'][Utils.reverseAlphaNumeric(questions[i]['correct_answer']) - 1]}',
+                                'Correct answer is : ${questions[i]['answers'][Utils.reverseAlphaNumeric(questions[i]['correct_answer'].toString().toUpperCase()) - 1]}',
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   color: Colors.white,
@@ -84,7 +84,9 @@ class PracticeResult extends StatelessWidget {
                                   color: questions[i]['answers'][
                                               Utils.reverseAlphaNumeric(
                                                       questions[i]
-                                                          ['correct_answer']) -
+                                                              ['correct_answer']
+                                                          .toString()
+                                                          .toUpperCase()) -
                                                   1] ==
                                           userAnswers[i]
                                       ? Colors.green
